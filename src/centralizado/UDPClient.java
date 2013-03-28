@@ -15,7 +15,7 @@ import java.io.ByteArrayOutputStream;
  *
  * @author uzielgl
  */
-public class UDPClient{
+public class UDPClient implements Serializable{
    
       
     public void sendMessage(String ip, int port, Mensaje m){
@@ -28,6 +28,7 @@ public class UDPClient{
             os.close();
         } catch (IOException ex) {
             System.out.println("Error de ioexception en UDPClient:sendMessage");
+            ex.printStackTrace();
         }
         byte[] messageBytes = bytes.toByteArray();
         

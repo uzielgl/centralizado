@@ -9,7 +9,7 @@ package centralizado
  *
  * @author uzielgl
  */
-class Recurso {
+class Recurso implements Serializable{
     public boolean isUse; //Determina si el recurso está ocupado o no
     public int id; //ID del algoritmo
     public String descripcion; //Descripción del recurso
@@ -33,6 +33,10 @@ class Recurso {
     /** Lo libera*/
     public boolean setFree(){
         this.isUse = false;
+    }
+    
+    public String toString(){
+        return "id: " + id + " en uso: " + this.isUse;
     }
     
 }

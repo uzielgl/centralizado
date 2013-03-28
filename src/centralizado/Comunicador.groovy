@@ -9,7 +9,7 @@ package centralizado
  *
  * @author uzielgl
  */
-class Comunicador {
+class Comunicador implements Serializable{
     public UDPServer udpServer;
     public UDPClient udpClient;
     

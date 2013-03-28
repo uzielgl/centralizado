@@ -11,7 +11,7 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 
-public class UDPServer extends Thread{
+public class UDPServer extends Thread implements Serializable{
     private String ip;
     private String port;
     public List<ComunicadorListener> listeners = new ArrayList<ComunicadorListener>();

@@ -17,7 +17,7 @@ import javax.swing.*;
  *
  * @author uzielgl
  */
-public class MainWindow extends javax.swing.JFrame implements ComunicadorListener {
+public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
     
     ArrayList<JButton> btns_procesos = new ArrayList<JButton>();
     String selectedProcess;
@@ -31,6 +31,7 @@ public class MainWindow extends javax.swing.JFrame implements ComunicadorListene
     ArrayList<Integer> resourcesCheckeds = new ArrayList<Integer>();
     
     ArrayList<JButton> resourceButtons;
+    
 
     /**
      * Creates new form MainWindow
@@ -44,6 +45,7 @@ public class MainWindow extends javax.swing.JFrame implements ComunicadorListene
         resourceButtons.add(btnLiberarR1);
         resourceButtons.add(btnLiberarR2);
         resourceButtons.add(btnLiberarR3);
+        
         
     }
     
@@ -93,17 +95,19 @@ public class MainWindow extends javax.swing.JFrame implements ComunicadorListene
         Map<String,String> confClient = process.get( selectedProcess );
         Map<String,String> confCoordinador = process.get( selectedCoordinador );
         
-        cliente = new Proceso( selectedProcess, confClient.get("ip"),  Integer.parseInt( confClient.get("port" ) ) );
+        cliente = new Proceso( Integer.parseInt( selectedProcess ), confClient.get("ip"),  Integer.parseInt( confClient.get("port" ) ) );
         cliente.startServer();
-        
-        coordinador = new Proceso( selectedCoordinador, confCoordinador.get("ip"),  Integer.parseInt( confCoordinador.get("port" ) ) );
+        cliente.listeners.add(this);
+        cliente.setWindow(this);
+
+        coordinador = new Proceso( Integer.parseInt( selectedCoordinador), confCoordinador.get("ip"),  Integer.parseInt( confCoordinador.get("port" ) ) );
         cliente.setCoordinador( coordinador );
         
-        cliente.comunicador.udpServer.listeners.add(this);
+        //cliente.comunicador.udpServer.listeners.add(this);
         
         System.out.println("Cliente" + cliente);
         System.out.println("Coordinador" + coordinador);
-        if( cliente.id.contains( coordinador.id ) ){
+        if( cliente.id == coordinador.id  ){
             cliente.addResource( new Recurso( 1, "Recurso texto") );
             cliente.addResource( new Recurso( 2, "Recurso bd") );
             cliente.addResource( new Recurso( 3, "Recurso archivo") );
@@ -117,8 +121,9 @@ public class MainWindow extends javax.swing.JFrame implements ComunicadorListene
         ArrayList<Proceso> procesos = new ArrayList<Proceso>();
         for( String key : process.keySet() ){
             Map<String,String> conf = process.get( key );
-            procesos.add( new Proceso(key, conf.get("ip"), Integer.parseInt( conf.get("port") ) ) );
+            procesos.add( new Proceso( Integer.parseInt(key), conf.get("ip"), Integer.parseInt( conf.get("port") ) ) );
         }
+        cliente.setPeers(procesos);
         System.out.println(procesos);
     }
     
@@ -359,7 +364,7 @@ public class MainWindow extends javax.swing.JFrame implements ComunicadorListene
     private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarActionPerformed
         // TODO add your handling code here:
         resourcesCheckeds = new ArrayList<Integer>();
-        Mensaje m = new Mensaje(Mensaje.TIPO_SOLICITUD);
+        Mensaje m = new Mensaje(Mensaje.TIPO_SOLICITUD, cliente.id);
         if( this.checkRecurso1.isSelected() ) {
             m.addRequestResources( 1 );
             resourcesCheckeds.add( 1 );
@@ -374,26 +379,33 @@ public class MainWindow extends javax.swing.JFrame implements ComunicadorListene
         }
         cliente.requestResource( m );
         addHistory("Enviando mensaje de solicitud al coordinador.");
-        
+        addHistory("Solicitando recursos: " + resourcesCheckeds);
         this.btnSolicitar.setEnabled(false);
         enableAllCheckbox(false);
-        enableButtonsResource(true, resourcesCheckeds);
+        //enableButtonsResource(true, resourcesCheckeds);
         System.out.println("Recursos" + resourcesCheckeds);
+        
     }//GEN-LAST:event_btnSolicitarActionPerformed
 
     private void btnLiberarR1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarR1ActionPerformed
         // TODO add your handling code here:
         freeCheckedResource( 1 );
+        addHistory("Envio de liberación de recurso 1");
+        cliente.freeResourceRequest(1);
     }//GEN-LAST:event_btnLiberarR1ActionPerformed
 
     private void btnLiberarR2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarR2ActionPerformed
         // TODO add your handling code here:
         freeCheckedResource( 2 );
+        addHistory("Envio de liberación de recurso 2");
+        cliente.freeResourceRequest(2);
     }//GEN-LAST:event_btnLiberarR2ActionPerformed
 
     private void btnLiberarR3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarR3ActionPerformed
         // TODO add your handling code here:
+        addHistory("Envio de liberación de recurso 3");
         freeCheckedResource( 3 );
+        cliente.freeResourceRequest( 3 );
     }//GEN-LAST:event_btnLiberarR3ActionPerformed
 
     public void freeCheckedResource(int id_resource){
@@ -442,15 +454,29 @@ public class MainWindow extends javax.swing.JFrame implements ComunicadorListene
             if( r == 2) btnLiberarR2.setEnabled(block);
             if( r == 3) btnLiberarR3.setEnabled(block);
         }
-            
     }
     
+    public void enableButtonsResource( boolean block, int id_resource ){
+            if( id_resource == 1) btnLiberarR1.setEnabled(block);
+            if( id_resource == 2) btnLiberarR2.setEnabled(block);
+            if( id_resource == 3) btnLiberarR3.setEnabled(block);
+    }
+    
+    public void recibeRecurso(Recurso r){
+        addHistory("Recibiendo recurso " + r.id );
+        addHistory("Haciendo cositas con recurso " + r.id);
+        enableButtonsResource(true, r.id);
+    }
+    
+    
+    
+    /*
     public void receiveMessage(Mensaje m){
         if( cliente.esCoordinador ){
-            System.out.println("Soy el coordinador");
+            //cliente.processRequestResource( m );
         }
         System.out.println("He recibido un mensaje");
-    }
+    }*/
     
     /**
      * @param args the command line arguments

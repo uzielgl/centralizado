@@ -14,14 +14,31 @@ class Mensaje implements Serializable{
     public static final int TIPO_OTORGAMIENTO = 2;
     public static final int TIPO_LIBERACION = 3;
     
-    int tipo;
-    ArrayList<Integer> requestResources = new ArrayList<Integer>();
+    //Id del proceso solicitante
+    public int id_solicitante;
+    public int id_recurso;
+    
+    public Recurso recurso; //Recurso a otorgar o liberar
+    
+    public int tipo;
+    public ArrayList<Integer> requestResources = new ArrayList<Integer>();
     
     /***/
-    public Mensaje(int tipo){
+    public Mensaje(int tipo, int id_solicitante){
         this.tipo = tipo;
+        if( tipo == 1)
+            this.id_solicitante = id_solicitante;
+        else if( tipo == 3)
+            this.id_recurso = id_solicitante
     }
     
+    
+    Mensaje(int tipo, Recurso r){
+        this.tipo = tipo;
+        recurso = r;
+    }
+    
+    //Cuando es de tipo solicitud le voy agregando los id de recursos que solicita
     public addRequestResources( int id_resource ){
         requestResources.add( id_resource );
     }
