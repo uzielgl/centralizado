@@ -10,11 +10,7 @@ package centralizado
  * @author uzielgl
  */
 class AlgoritmoCentralizado {
-    private ArrayList<Mensaje> queueMessages = new ArrayList<Mensaje>(); //Será la cola de los mensajes que no han sido entregados
-    private Proceso coordinador; //El proceso "cliente" es decir, el proceso de él mismo
-    private ArrayList<Proceso> procesos = new ArrayList<Proceso>();
-    private Proceso client; //El proceso actual que contiene la ip y el port para levantar el servidor
-    public Comunicador comunicador;
+  
     
     
     AlgoritmoCentralizado(  Proceso client, Proceso coordinador, ArrayList<Proceso> procesos ){
@@ -39,6 +35,10 @@ class AlgoritmoCentralizado {
     /** Agrega a la cola de mensajes el nuevo mensaje*/
     public addQueueMessage( Mensaje m){
         queueMessages.add( m )
+        
+    }
+    
+    public requestResource(  ){
         
     }
     

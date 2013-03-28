@@ -16,6 +16,7 @@ import java.io.ByteArrayOutputStream;
  * @author uzielgl
  */
 public class UDPClient{
+   
       
     public void sendMessage(String ip, int port, Mensaje m){
         //Lo convertimos a bytes

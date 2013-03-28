@@ -10,8 +10,8 @@ package centralizado
  * @author uzielgl
  */
 class Comunicador {
-    UDPServer udpServer;
-    UDPClient udpClient;
+    public UDPServer udpServer;
+    public UDPClient udpClient;
     
     Comunicador(String ip, int port){
         udpServer = new UDPServer(ip, port); //Siempre levanta el servidor

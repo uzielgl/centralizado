@@ -14,7 +14,7 @@ import java.util.*;
 public class UDPServer extends Thread{
     private String ip;
     private String port;
-    List<ComunicadorListener> listeners = new ArrayList<ComunicadorListener>();
+    public List<ComunicadorListener> listeners = new ArrayList<ComunicadorListener>();
     
     UDPServer( String ip, String port ){
         this.ip = ip;
