@@ -21,5 +21,7 @@ public class Centralizado {
         new MainWindow().setVisible(true);
         new MainWindow().setVisible(true);
         new MainWindow().setVisible(true);
+        new MainWindow().setVisible(true);
+        new MainWindow().setVisible(true);
     }
 }
