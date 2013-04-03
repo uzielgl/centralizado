@@ -158,6 +158,7 @@ class Proceso implements ComunicadorListener{
             println solicitudesRecurso[x][0]
             if( solicitudesRecurso[x][0] == id_resource ){
                 otorgarServicio( id_resource, solicitudesRecurso[x][1] );
+                solicitudesRecurso.remove(x);
                 break;
             }
         }
@@ -188,7 +189,7 @@ class Proceso implements ComunicadorListener{
         
         //Para coordinador
         if( m.tipo == Mensaje.TIPO_LIBERACION){
-            println "Liberando el servicio"
+            println "Liberando el servicio" + this
             freeResource( m.id_recurso );
             otorgarServicio( m.id_recurso ); //Checa de la cola de servicios, cual es el siguiente que se debe de otorgar
         }
