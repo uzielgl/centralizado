@@ -155,6 +155,7 @@ class Proceso implements ComunicadorListener{
     
     public void otorgarServicio(int id_resource){
         for( int x = 0 ; x < solicitudesRecurso.size() ; x++){
+            println solicitudesRecurso[x][0]
             if( solicitudesRecurso[x][0] == id_resource ){
                 otorgarServicio( id_resource, solicitudesRecurso[x][1] );
                 break;
