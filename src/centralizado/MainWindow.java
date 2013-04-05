@@ -38,6 +38,12 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
      */
     public MainWindow() {
         initComponents();   
+        
+        pnlCola.setVisible(false);
+        pnlSolicitud.setVisible(false);
+        pnlLiberacion.setVisible(false);
+        pack();
+                
         loadProcessButtons();
         loadCoordinatesButtons();
         
@@ -108,6 +114,8 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
         System.out.println("Cliente" + cliente);
         System.out.println("Coordinador" + coordinador);
         if( cliente.id == coordinador.id  ){
+            this.pnlCola.setVisible(true);
+            pack();
             cliente.addResource( new Recurso( 1, "Recurso texto") );
             cliente.addResource( new Recurso( 2, "Recurso bd") );
             cliente.addResource( new Recurso( 3, "Recurso archivo") );
@@ -115,7 +123,10 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
             addHistory(coordinador.id + " Cómo coordinador.");
             addHistory("Agregando recursos al coordinador");
         }else{
+            this.pnlLiberacion.setVisible(true);
+            this.pnlSolicitud.setVisible(true);
             addHistory(cliente.id + " Cómo cliente.");
+            
         }
         
         ArrayList<Proceso> procesos = new ArrayList<Proceso>();
@@ -163,18 +174,19 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
         pnlSelectProccess = new javax.swing.JPanel();
         pnlSelectCoordinator = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        pnlSolicitud = new javax.swing.JPanel();
         checkRecurso3 = new javax.swing.JCheckBox();
         checkRecurso2 = new javax.swing.JCheckBox();
         checkRecurso1 = new javax.swing.JCheckBox();
         btnSolicitar = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        pnlLiberacion = new javax.swing.JPanel();
         btnLiberarR1 = new javax.swing.JButton();
         btnLiberarR2 = new javax.swing.JButton();
         btnLiberarR3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtHistorial = new javax.swing.JTextArea();
+        pnlCola = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -195,7 +207,7 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Algoritmo Centralizado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Solicitud de Recursos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 10))); // NOI18N
+        pnlSolicitud.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Solicitud de Recursos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 10))); // NOI18N
 
         checkRecurso3.setText("Recurso 3");
         checkRecurso3.addActionListener(new java.awt.event.ActionListener() {
@@ -215,24 +227,24 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlSolicitudLayout = new javax.swing.GroupLayout(pnlSolicitud);
+        pnlSolicitud.setLayout(pnlSolicitudLayout);
+        pnlSolicitudLayout.setHorizontalGroup(
+            pnlSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSolicitudLayout.createSequentialGroup()
                 .addComponent(btnSolicitar)
                 .addGap(0, 9, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(pnlSolicitudLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(checkRecurso1)
                     .addComponent(checkRecurso2)
                     .addComponent(checkRecurso3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnlSolicitudLayout.setVerticalGroup(
+            pnlSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSolicitudLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(checkRecurso1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -244,7 +256,7 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Liberación de Recursos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 10))); // NOI18N
+        pnlLiberacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Liberación de Recursos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 10))); // NOI18N
 
         btnLiberarR1.setText("Recurso 1");
         btnLiberarR1.setEnabled(false);
@@ -270,28 +282,28 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlLiberacionLayout = new javax.swing.GroupLayout(pnlLiberacion);
+        pnlLiberacion.setLayout(pnlLiberacionLayout);
+        pnlLiberacionLayout.setHorizontalGroup(
+            pnlLiberacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLiberacionLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlLiberacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLiberarR3)
                     .addComponent(btnLiberarR2)
                     .addComponent(btnLiberarR1))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        pnlLiberacionLayout.setVerticalGroup(
+            pnlLiberacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlLiberacionLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(btnLiberarR1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLiberarR2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLiberarR3)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Historial", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 10))); // NOI18N
@@ -316,28 +328,46 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
                 .addContainerGap())
         );
 
+        pnlCola.setBorder(javax.swing.BorderFactory.createTitledBorder("Cola de recursos"));
+        pnlCola.setToolTipText("");
+
+        javax.swing.GroupLayout pnlColaLayout = new javax.swing.GroupLayout(pnlCola);
+        pnlCola.setLayout(pnlColaLayout);
+        pnlColaLayout.setHorizontalGroup(
+            pnlColaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlColaLayout.setVerticalGroup(
+            pnlColaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(pnlCola, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(pnlSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(pnlLiberacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(pnlCola, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(pnlSolicitud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlLiberacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -369,10 +399,6 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void checkRecurso3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkRecurso3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkRecurso3ActionPerformed
-
     private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarActionPerformed
         // TODO add your handling code here:
         resourcesCheckeds = new ArrayList<Integer>();
@@ -396,15 +422,19 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
         enableAllCheckbox(false);
         //enableButtonsResource(true, resourcesCheckeds);
         System.out.println("Recursos" + resourcesCheckeds);
-        
+
     }//GEN-LAST:event_btnSolicitarActionPerformed
 
-    private void btnLiberarR1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarR1ActionPerformed
+    private void checkRecurso3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkRecurso3ActionPerformed
         // TODO add your handling code here:
-        freeCheckedResource( 1 );
-        addHistory("Envio de liberación de recurso 1");
-        cliente.freeResourceRequest(1);
-    }//GEN-LAST:event_btnLiberarR1ActionPerformed
+    }//GEN-LAST:event_checkRecurso3ActionPerformed
+
+    private void btnLiberarR3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarR3ActionPerformed
+        // TODO add your handling code here:
+        addHistory("Envio de liberación de recurso 3");
+        freeCheckedResource( 3 );
+        cliente.freeResourceRequest( 3 );
+    }//GEN-LAST:event_btnLiberarR3ActionPerformed
 
     private void btnLiberarR2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarR2ActionPerformed
         // TODO add your handling code here:
@@ -413,12 +443,12 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
         cliente.freeResourceRequest(2);
     }//GEN-LAST:event_btnLiberarR2ActionPerformed
 
-    private void btnLiberarR3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarR3ActionPerformed
+    private void btnLiberarR1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLiberarR1ActionPerformed
         // TODO add your handling code here:
-        addHistory("Envio de liberación de recurso 3");
-        freeCheckedResource( 3 );
-        cliente.freeResourceRequest( 3 );
-    }//GEN-LAST:event_btnLiberarR3ActionPerformed
+        freeCheckedResource( 1 );
+        addHistory("Envio de liberación de recurso 1");
+        cliente.freeResourceRequest(1);
+    }//GEN-LAST:event_btnLiberarR1ActionPerformed
 
     public void freeCheckedResource(int id_resource){
         System.out.println("recursos checkeados actuales" + resourcesCheckeds);
@@ -533,13 +563,14 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
     private javax.swing.JCheckBox checkRecurso2;
     private javax.swing.JCheckBox checkRecurso3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel pnlCola;
+    private javax.swing.JPanel pnlLiberacion;
     private javax.swing.JPanel pnlSelectCoordinator;
     private javax.swing.JPanel pnlSelectProccess;
+    private javax.swing.JPanel pnlSolicitud;
     public javax.swing.JTextArea txtHistorial;
     // End of variables declaration//GEN-END:variables
 }
