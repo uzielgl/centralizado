@@ -21,7 +21,7 @@ class Mensaje implements Serializable{
     public Recurso recurso; //Recurso a otorgar o liberar
     
     public int tipo;
-    public ArrayList<Integer> requestResources = new ArrayList<Integer>();
+    public requestResources = [:];
     
     /***/
     public Mensaje(int tipo, int id_solicitante){
@@ -39,8 +39,8 @@ class Mensaje implements Serializable{
     }
     
     //Cuando es de tipo solicitud le voy agregando los id de recursos que solicita
-    public addRequestResources( int id_resource ){
-        requestResources.add( id_resource );
+    public addRequestResources( int id_resource, int value ){
+        requestResources[ id_resource ] = value ;
     }
     
         

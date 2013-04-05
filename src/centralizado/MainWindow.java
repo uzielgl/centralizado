@@ -188,9 +188,9 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        lblCola4 = new javax.swing.JLabel();
-        lblCola5 = new javax.swing.JLabel();
-        lblCola6 = new javax.swing.JLabel();
+        lblRecurso1 = new javax.swing.JLabel();
+        lblRecurso2 = new javax.swing.JLabel();
+        lblRecurso3 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         pnlSolicitud = new javax.swing.JPanel();
         checkRecurso3 = new javax.swing.JCheckBox();
@@ -251,11 +251,11 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
 
         jLabel6.setText("3");
 
-        lblCola4.setText(" ");
+        lblRecurso1.setText(" ");
 
-        lblCola5.setText(" ");
+        lblRecurso2.setText(" ");
 
-        lblCola6.setText(" ");
+        lblRecurso3.setText(" ");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -270,12 +270,12 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCola4)
-                            .addComponent(lblCola5)))
+                            .addComponent(lblRecurso1)
+                            .addComponent(lblRecurso2)))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblCola6)))
+                        .addComponent(lblRecurso3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -283,15 +283,15 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(lblCola4))
+                    .addComponent(lblRecurso1))
                 .addGap(5, 5, 5)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(lblCola5))
+                    .addComponent(lblRecurso2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(lblCola6))
+                    .addComponent(lblRecurso3))
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
@@ -590,16 +590,17 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
         // TODO add your handling code here:
         resourcesCheckeds = new ArrayList<Integer>();
         Mensaje m = new Mensaje(Mensaje.TIPO_SOLICITUD, cliente.id);
+        ArrayList r = new ArrayList();
         if( this.checkRecurso1.isSelected() ) {
-            m.addRequestResources( 1 );
+            m.addRequestResources( 1, Integer.parseInt( this.txtRecurso1.getText() ) );
             resourcesCheckeds.add( 1 );
         }
         if( this.checkRecurso2.isSelected() ) {
-            m.addRequestResources( 2 );
+            m.addRequestResources( 2, Integer.parseInt( this.txtRecurso2.getText() ) );
             resourcesCheckeds.add( 2 );
         }
         if( this.checkRecurso3.isSelected() ) {
-            m.addRequestResources( 3 );
+            m.addRequestResources( 3, Integer.parseInt( this.txtRecurso3.getText() ) );
             resourcesCheckeds.add( 3 );
         }
         cliente.requestResource( m );
@@ -775,12 +776,12 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblCola1;
-    private javax.swing.JLabel lblCola2;
-    private javax.swing.JLabel lblCola3;
-    private javax.swing.JLabel lblCola4;
-    private javax.swing.JLabel lblCola5;
-    private javax.swing.JLabel lblCola6;
+    public javax.swing.JLabel lblCola1;
+    public javax.swing.JLabel lblCola2;
+    public javax.swing.JLabel lblCola3;
+    public javax.swing.JLabel lblRecurso1;
+    public javax.swing.JLabel lblRecurso2;
+    public javax.swing.JLabel lblRecurso3;
     private javax.swing.JPanel pnlCola;
     private javax.swing.JPanel pnlLiberacion;
     private javax.swing.JPanel pnlSelectCoordinator;

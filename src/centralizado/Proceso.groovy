@@ -135,12 +135,19 @@ class Proceso implements ComunicadorListener{
      * Si está ocupado pone ese recurso en cola. Una cola de recursos en espera
      * que debe de llevar el proceso que lo está solicitado y el id del recurso a solicitar por lo menos*/
     public processRequestResource( Mensaje m ){
-       for( int x = 0; x < m.requestResources.size(); x++){ //Verificamos los recursos que solicita
-            println "el proceso en uso: " + getResourceById( m.requestResources[x] ).isUse;
-            if( !getResourceById( m.requestResources[x] ).isBusy() ){ //Si el recurso no está ocupado
+       //for( int x = 0; x < m.requestResources.size(); x++){ //Verificamos los recursos que solicita
+       for(int x: m.requestResources.keySet() ){
+            println "el proceso en uso: " + getResourceById( x ).isUse;
+            if( !getResourceById( x ).isBusy() ){ //Si el recurso no está ocupado
                 //Lo pasamos a ocupado
-                Recurso r = getResourceById( m.requestResources[x] );
+                Recurso r = getResourceById( x );
                 r.setUse();
+                //Le ponemos su valor
+                r.value = m.requestResources[x];
+                if( x == 1) window.lblRecurso1.setText( Integer.toString( m.requestResources[x] ) )
+                if( x == 2) window.lblRecurso2.setText( Integer.toString( m.requestResources[x] ) )
+                if( x == 3) window.lblRecurso3.setText( Integer.toString( m.requestResources[x] ) )
+                
                 //Enviamos mensaje de otorgamiento con el recurso al proceso solicitante
                 println this.getPeerById( m.id_solicitante ).port.class;
                 Proceso a = this.getPeerById( m.id_solicitante );
@@ -148,26 +155,52 @@ class Proceso implements ComunicadorListener{
                 window.addHistory("Se otorga acceso de recurso " + r.id + " a proceso " + m.id_solicitante );
             }else{
                 //Debo de agregar a una cola de solicitudesRecurso [ [id_recurso, id_proceso_solicitante] ]
-                solicitudesRecurso.add( [ m.requestResources[x], m.id_solicitante ] );
+                solicitudesRecurso.add( [ x, m.id_solicitante, m.requestResources[x] ] );
             }
+            actualizarColaRecursos();
         }
+    }
+    
+    public void actualizarColaRecursos(){
+        //Separamos los recursos
+        ArrayList cola_recurso1 = new ArrayList();
+        ArrayList cola_recurso2 = new ArrayList();
+        ArrayList cola_recurso3 = new ArrayList();
+        //Recurso1
+        for( ArrayList l : solicitudesRecurso ){
+            if( l[0] == 1) cola_recurso1.add( [ l[1], l[2]] );
+            if( l[0] == 2) cola_recurso2.add( [ l[1], l[2]] );
+            if( l[0] == 3) cola_recurso3.add( [ l[1], l[2]] );
+        }
+        
+        window.lblCola1.setText( cola_recurso1.toString() )
+        window.lblCola2.setText( cola_recurso2.toString() )
+        window.lblCola3.setText( cola_recurso3.toString() )
+        
     }
     
     public void otorgarServicio(int id_resource){
         for( int x = 0 ; x < solicitudesRecurso.size() ; x++){
             println solicitudesRecurso[x][0]
             if( solicitudesRecurso[x][0] == id_resource ){
-                otorgarServicio( id_resource, solicitudesRecurso[x][1] );
+                otorgarServicio( id_resource, solicitudesRecurso[x][1], solicitudesRecurso[x][2] );
                 solicitudesRecurso.remove(x);
                 break;
             }
         }
+        actualizarColaRecursos();
     }
     
-    public void otorgarServicio(int id_resource, int id_proceso){
+    public void otorgarServicio(int id_resource, int id_proceso, int value_to_change){
         //Lo pasamos a ocupado
         Recurso r = getResourceById( id_resource );
         r.setUse();
+        r.value = value_to_change;
+        
+        if( id_resource == 1) window.lblRecurso1.setText( Integer.toString( value_to_change ) )
+        if( id_resource == 2) window.lblRecurso2.setText( Integer.toString( value_to_change ) )
+        if( id_resource == 3) window.lblRecurso3.setText( Integer.toString( value_to_change ) )
+        
         //Enviamos mensaje de otorgamiento con el recurso al proceso solicitante
         println this.getPeerById( id_proceso ).port.class;
         Proceso a = this.getPeerById( id_proceso );

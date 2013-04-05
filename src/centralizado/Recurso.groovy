@@ -13,6 +13,7 @@ class Recurso implements Serializable{
     public boolean isUse; //Determina si el recurso está ocupado o no
     public int id; //ID del algoritmo
     public String descripcion; //Descripción del recurso
+    public int value; //El valor del recurso, que son variables
     
     Recurso( int id, String descripcion ){
         this.id = id;
