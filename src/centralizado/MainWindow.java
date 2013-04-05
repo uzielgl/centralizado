@@ -197,6 +197,9 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
         checkRecurso2 = new javax.swing.JCheckBox();
         checkRecurso1 = new javax.swing.JCheckBox();
         btnSolicitar = new javax.swing.JButton();
+        txtRecurso1 = new javax.swing.JTextField();
+        txtRecurso2 = new javax.swing.JTextField();
+        txtRecurso3 = new javax.swing.JTextField();
         pnlLiberacion = new javax.swing.JPanel();
         btnLiberarR1 = new javax.swing.JButton();
         btnLiberarR2 = new javax.swing.JButton();
@@ -355,30 +358,62 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
             }
         });
 
+        txtRecurso1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRecurso1ActionPerformed(evt);
+            }
+        });
+
+        txtRecurso2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRecurso2ActionPerformed(evt);
+            }
+        });
+
+        txtRecurso3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRecurso3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlSolicitudLayout = new javax.swing.GroupLayout(pnlSolicitud);
         pnlSolicitud.setLayout(pnlSolicitudLayout);
         pnlSolicitudLayout.setHorizontalGroup(
             pnlSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSolicitudLayout.createSequentialGroup()
                 .addComponent(btnSolicitar)
-                .addGap(0, 9, Short.MAX_VALUE))
+                .addGap(0, 35, Short.MAX_VALUE))
             .addGroup(pnlSolicitudLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addContainerGap()
                 .addGroup(pnlSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(checkRecurso1)
-                    .addComponent(checkRecurso2)
-                    .addComponent(checkRecurso3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pnlSolicitudLayout.createSequentialGroup()
+                        .addComponent(checkRecurso3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtRecurso3))
+                    .addGroup(pnlSolicitudLayout.createSequentialGroup()
+                        .addComponent(checkRecurso1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtRecurso1))
+                    .addGroup(pnlSolicitudLayout.createSequentialGroup()
+                        .addComponent(checkRecurso2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtRecurso2))))
         );
         pnlSolicitudLayout.setVerticalGroup(
             pnlSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSolicitudLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(checkRecurso1)
+                .addGroup(pnlSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(checkRecurso1)
+                    .addComponent(txtRecurso1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(checkRecurso2)
+                .addGroup(pnlSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(checkRecurso2)
+                    .addComponent(txtRecurso2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(checkRecurso3)
+                .addGroup(pnlSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(checkRecurso3)
+                    .addComponent(txtRecurso3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnSolicitar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -602,6 +637,18 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
         cliente.freeResourceRequest(1);
     }//GEN-LAST:event_btnLiberarR1ActionPerformed
 
+    private void txtRecurso1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRecurso1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRecurso1ActionPerformed
+
+    private void txtRecurso2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRecurso2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRecurso2ActionPerformed
+
+    private void txtRecurso3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRecurso3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRecurso3ActionPerformed
+
     public void freeCheckedResource(int id_resource){
         System.out.println("recursos checkeados actuales" + resourcesCheckeds);
         for(int x=0; x<resourcesCheckeds.size(); x++){
@@ -740,5 +787,8 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
     private javax.swing.JPanel pnlSelectProccess;
     private javax.swing.JPanel pnlSolicitud;
     public javax.swing.JTextArea txtHistorial;
+    private javax.swing.JTextField txtRecurso1;
+    private javax.swing.JTextField txtRecurso2;
+    private javax.swing.JTextField txtRecurso3;
     // End of variables declaration//GEN-END:variables
 }
