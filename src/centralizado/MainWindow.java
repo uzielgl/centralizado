@@ -178,6 +178,12 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         pnlCola = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblCola1 = new javax.swing.JLabel();
+        lblCola2 = new javax.swing.JLabel();
+        lblCola3 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         pnlSolicitud = new javax.swing.JPanel();
         checkRecurso3 = new javax.swing.JCheckBox();
@@ -215,15 +221,54 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
         pnlCola.setBorder(javax.swing.BorderFactory.createTitledBorder("Cola de recursos"));
         pnlCola.setToolTipText("");
 
+        jLabel1.setText("1");
+
+        jLabel2.setText("2");
+
+        jLabel3.setText("3");
+
+        lblCola1.setText(" ");
+
+        lblCola2.setText(" ");
+
+        lblCola3.setText(" ");
+
         javax.swing.GroupLayout pnlColaLayout = new javax.swing.GroupLayout(pnlCola);
         pnlCola.setLayout(pnlColaLayout);
         pnlColaLayout.setHorizontalGroup(
             pnlColaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(pnlColaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlColaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlColaLayout.createSequentialGroup()
+                        .addGroup(pnlColaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlColaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCola1)
+                            .addComponent(lblCola2)))
+                    .addGroup(pnlColaLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCola3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlColaLayout.setVerticalGroup(
             pnlColaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(pnlColaLayout.createSequentialGroup()
+                .addGroup(pnlColaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblCola1))
+                .addGap(5, 5, 5)
+                .addGroup(pnlColaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(lblCola2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlColaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(lblCola3))
+                .addGap(0, 47, Short.MAX_VALUE))
         );
 
         pnlSolicitud.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Solicitud de Recursos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 10))); // NOI18N
@@ -605,6 +650,9 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
     private javax.swing.JCheckBox checkRecurso1;
     private javax.swing.JCheckBox checkRecurso2;
     private javax.swing.JCheckBox checkRecurso3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -612,6 +660,9 @@ public class MainWindow extends javax.swing.JFrame implements ProcesoListener{
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCola1;
+    private javax.swing.JLabel lblCola2;
+    private javax.swing.JLabel lblCola3;
     private javax.swing.JPanel pnlCola;
     private javax.swing.JPanel pnlLiberacion;
     private javax.swing.JPanel pnlSelectCoordinator;
